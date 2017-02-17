@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Embed Tidal
- * Version: 0.1.0
+ * Version: 0.1.1
  * Description: Embed the Tidal web player via pasting a URL or using a shortcode. Works well with the Shortcake shortcode UI.
  * Author: Bjørn Johansen
  * Author URI: https://bjornjohansen.no
@@ -168,10 +168,6 @@ add_action( 'enqueue_shortcode_ui', function() {
  */
 function embed_tidal_url_handler( $matches, $attr, $url, $rawattr ) {
 
-	if ( ! is_numeric( $matches[3] ) ) {
-		return $url;
-	}
-
 	$tidal_id = $matches[3];
 
 	switch ( $matches[2] ) {
@@ -225,7 +221,7 @@ function embed_tidal_url_handler( $matches, $attr, $url, $rawattr ) {
  * @since 0.0.2
  */
 function embed_tidal_wp_embed_register_handler() {
-	wp_embed_register_handler( 'tidal', '#^https?://(listen\.)?tidal.com/(playlist|track|album|video)/(\d+)$#', 'embed_tidal_url_handler' );
+	wp_embed_register_handler( 'tidal', '/^https?:\/\/(listen\.)?tidal.com\/(playlist|track|album|video)\/(.*)$/', 'embed_tidal_url_handler' );
 }
 add_action( 'init', 'embed_tidal_wp_embed_register_handler' );
 
