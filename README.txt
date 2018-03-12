@@ -1,5 +1,5 @@
 === Embed Tidal ===
-Contributors: bjornjohansen
+Contributors: bjornjohansen, paulschreiber
 Tags: embed, tidal, shortcode, shortcake, streaming
 Requires at least: 3.6.1
 Tested up to: 4.9.4
@@ -34,7 +34,7 @@ Install and activate like any regular plugin. You should know the drill.
 == Changelog ==
 
 = 0.1.2 =
-* Refactor in to class
+* Refactor in to class. Thanks to paulschreiber.
 
 = 0.1.1 =
 * Accomodate for the new playlist ID format.
