@@ -1,34 +1,31 @@
 <?php
 /**
- * Plugin Name: Embed Tidal
- * Version: 0.1.2
- * Description: Embed the Tidal web player via pasting a URL or using a shortcode. Works well with the Shortcake shortcode UI.
- * Author: Bjørn Johansen
- * Author URI: https://bjornjohansen.no
- * Text Domain: embed-tidal
- * Domain Path: /languages
- * License: GPL v2 or later
+ * Embed Tidal plugin.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * @package EmbedTidal
  */
 
+/**
+ * The Embed_Tidal class.
+ */
 class Embed_Tidal {
-
-	/*
-	 * Load the Tidal JavaScript only when a post needs it
+	/**
+	 * Load the Tidal JavaScript only when a post needs it.
+	 *
+	 * @var bool
 	 */
 	public static $load_script = false;
 
+	/**
+	 * Key => value array of the different supported embed types.
+	 *
+	 * @var array
+	 */
 	public static $embed_type = [];
 
+	/**
+	 * Setup hooks. Register handlers etc.
+	 */
 	public static function hooks() {
 		self::$embed_type = [
 			'a' => __( 'Album', 'embed-tidal' ),
@@ -43,27 +40,28 @@ class Embed_Tidal {
 		add_action( 'wp_footer', [ __CLASS__, 'enqueue_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'admin_enqueue_scripts' ] );
 
-		add_action( 'plugins_loaded', function () {
-			load_plugin_textdomain( 'embed-tidal', false, basename( dirname( __FILE__ ) ) . '/languages' );
-		} );
+		add_action(
+			'plugins_loaded', function () {
+				load_plugin_textdomain( 'embed-tidal', false, basename( dirname( __FILE__ ) ) . '/languages' );
+			}
+		);
 
 		/*
 		 * Include a script for working with the shortcode UI
 		 */
-		add_action( 'enqueue_shortcode_ui', function() {
-			wp_enqueue_script( 'tidal-embed-shortcode-ui', plugin_dir_url( __FILE__ ) . 'tidal-embed-shortcode-ui.js' );
-		} );
+		add_action(
+			'enqueue_shortcode_ui', function() {
+				wp_enqueue_script( 'tidal-embed-shortcode-ui', plugin_dir_url( __FILE__ ) . 'tidal-embed-shortcode-ui.js' );
+			}
+		);
 
 		add_action( 'register_shortcode_ui', [ __CLASS__, 'embed_tidal_shortcode_ui' ] );
 	}
-
 
 	/**
 	 * Builds the content
 	 *
 	 * @since 0.1.2
-	 *
-	 * @param $atts
 	 *
 	 * @param array  $attr Provided attributes.
 	 * @param string $content The shortcode content.
@@ -97,11 +95,13 @@ class Embed_Tidal {
 	public static function shortcode_handler( $attr, $content, $shortcode_tag ) {
 		self::$load_script = true;
 
-		$attr = shortcode_atts( [
-			'type'       => 'a',
-			'id'         => null,
-			'related_id' => null,
-		], $attr, $shortcode_tag );
+		$attr = shortcode_atts(
+			[
+				'type'       => 'a',
+				'id'         => null,
+				'related_id' => null,
+			], $attr, $shortcode_tag
+		);
 
 		/**
 		 * Filters the tidal shortcode output.
@@ -183,7 +183,7 @@ class Embed_Tidal {
 	/**
 	 * Enqueue the Tidal JavaScript on admin pages
 	 *
-	 * @param string $hook
+	 * @param string $hook The admin page hook.
 	 */
 	public static function admin_enqueue_scripts( $hook ) {
 		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ), true ) ) {
@@ -254,5 +254,3 @@ class Embed_Tidal {
 		shortcode_ui_register_for_shortcode( 'tidal', $shortcode_ui_args );
 	}
 }
-
-add_action( 'init', [ 'Embed_Tidal', 'hooks' ] );
