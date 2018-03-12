@@ -22,7 +22,7 @@ Supports:
 You can paste URLs – just like with YouTube videos – in any form the web player supports. E.g.:
 
 * https://listen.tidal.com/album/1885832
-* http://tidal.com/track/64978614
+* https://tidal.com/track/64978614
 * https://tidal.com/video/25025156
 
 
