@@ -20,10 +20,6 @@
  * GNU General Public License for more details.
  */
 
-add_action( 'plugins_loaded', function () {
-	load_plugin_textdomain( 'embed-tidal', false, basename( dirname( __FILE__ ) ) . '/languages' );
-} );
-
 class Embed_Tidal {
 
 	/*
