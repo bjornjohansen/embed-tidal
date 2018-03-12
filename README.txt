@@ -2,8 +2,8 @@
 Contributors: bjornjohansen
 Tags: embed, tidal, shortcode, shortcake, streaming
 Requires at least: 3.6.1
-Tested up to: 4.7.2
 Stable tag: 0.1.1
+Tested up to: 4.9.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
