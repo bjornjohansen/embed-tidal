@@ -1,3 +1,12 @@
+/**
+ * Shortcake integration.
+ *
+ * @package EmbedTidal
+ */
+
+/**
+ * Shortcake UI update listener.
+ */
 function TidalEmbedShortcodeUIUpdateTypeListener( changed, collection, shortcode ) {
 	var updatedVal     = changed.value,
 	relatedIDfield = attributeByName( 'related-id' );
