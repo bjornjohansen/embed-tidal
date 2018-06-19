@@ -8,8 +8,10 @@
  * Shortcake UI update listener.
  */
 function TidalEmbedShortcodeUIUpdateTypeListener( changed, collection, shortcode ) {
+	var updatedVal     = changed.value,
+	relatedIDfield = attributeByName( 'related-id' );
 
-	function attributeByName(name) {
+	function attributeByName( name ) {
 		return _.find(
 			collection,
 			function( viewModel ) {
@@ -18,10 +20,7 @@ function TidalEmbedShortcodeUIUpdateTypeListener( changed, collection, shortcode
 		);
 	}
 
-	var updatedVal     = changed.value
-		relatedIDfield = attributeByName( 'related-id' );
-
-	if ( updatedVal === 'v' ) {
+	if ( 'v' === updatedVal ) {
 		relatedIDfield.$el.show();
 	} else {
 		relatedIDfield.$el.hide();
