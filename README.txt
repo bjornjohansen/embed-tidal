@@ -3,7 +3,7 @@ Contributors: bjornjohansen, paulschreiber
 Tags: embed, tidal, shortcode, shortcake, streaming
 Requires at least: 3.6.1
 Tested up to: 4.9.4
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ Install and activate like any regular plugin. You should know the drill.
 
 
 == Changelog ==
+
+= 0.2.1 =
+* Code style cleanup.
 
 = 0.2.0 =
 * Refactor in to class. Thanks to paulschreiber.
