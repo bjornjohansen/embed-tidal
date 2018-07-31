@@ -51,7 +51,7 @@ class Embed_Tidal {
 		 */
 		add_action(
 			'enqueue_shortcode_ui', function() {
-				wp_enqueue_script( 'tidal-embed-shortcode-ui', plugin_dir_url( __FILE__ ) . 'tidal-embed-shortcode-ui.js' );
+				wp_enqueue_script( 'tidal-embed-shortcode-ui', plugin_dir_url( __FILE__ ) . 'tidal-embed-shortcode-ui.js', [], EMBED_TIDAL_VERSION, false );
 			}
 		);
 
@@ -177,7 +177,7 @@ class Embed_Tidal {
 			return;
 		}
 
-		wp_enqueue_script( 'embed-tidal', 'https://embed.tidal.com/tidal-embed.js', [], null, true );
+		wp_enqueue_script( 'embed-tidal', 'https://embed.tidal.com/tidal-embed.js', [], EMBED_TIDAL_VERSION, true );
 	}
 
 	/**
@@ -186,11 +186,11 @@ class Embed_Tidal {
 	 * @param string $hook The admin page hook.
 	 */
 	public static function admin_enqueue_scripts( $hook ) {
-		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ), true ) ) {
+		if ( ! in_array( $hook, [ 'post.php', 'post-new.php' ], true ) ) {
 			return;
 		}
 
-		wp_enqueue_script( 'embed-tidal', 'https://embed.tidal.com/tidal-embed.js' );
+		wp_enqueue_script( 'embed-tidal', 'https://embed.tidal.com/tidal-embed.js', [], EMBED_TIDAL_VERSION );
 	}
 
 	/**
@@ -202,35 +202,35 @@ class Embed_Tidal {
 		/*
 		 * Define the UI for attributes of the shortcode.
 		 */
-		$fields = array(
-			array(
+		$fields = [
+			[
 				/* translators: Type of embed. I.e. album, playlist, track or video */
 				'label'   => esc_html_x( 'Type', 'noun', 'embed-tidal' ),
 				'attr'    => 'type',
 				'type'    => 'select',
-				'options' => array(
+				'options' => [
 					'a' => esc_html__( 'Album', 'embed-tidal' ),
 					'p' => esc_html__( 'Playlist', 'embed-tidal' ),
 					't' => esc_html_x( 'Track', 'embed type', 'embed-tidal' ),
 					'v' => esc_html__( 'Video', 'embed-tidal' ),
-				),
-			),
-			array(
+				],
+			],
+			[
 				'label' => esc_html__( 'Tidal ID', 'embed-tidal' ),
 				'attr'  => 'id',
 				'type'  => 'text',
-			),
-			array(
+			],
+			[
 				'label' => esc_html__( 'Tidal ID for related album', 'embed-tidal' ),
 				'attr'  => 'related_id',
 				'type'  => 'text',
-			),
-		);
+			],
+		];
 
 		/*
 		 * Define the Shortcode UI arguments.
 		 */
-		$shortcode_ui_args = array(
+		$shortcode_ui_args = [
 
 			/*
 			 * How the shortcode should be labeled in the UI.
@@ -249,7 +249,7 @@ class Embed_Tidal {
 			 * See above, to where the the assignment to the $fields variable was made.
 			 */
 			'attrs'         => $fields,
-		);
+		];
 
 		shortcode_ui_register_for_shortcode( 'tidal', $shortcode_ui_args );
 	}

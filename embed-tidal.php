@@ -5,7 +5,7 @@
  * @package EmbedTidal
  *
  * Plugin Name: Embed Tidal
- * Version: 0.2.0
+ * Version: 0.2.1
  * Description: Embed the Tidal web player via pasting a URL or using a shortcode. Works well with the Shortcake shortcode UI.
  * Author: Bjørn Johansen
  * Author URI: https://bjornjohansen.no
@@ -23,6 +23,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+
+define( 'EMBED_TIDAL_VERSION', '0.2.1' );
 
 // Require the class where the action happens.
 require_once 'class-embed-tidal.php';
